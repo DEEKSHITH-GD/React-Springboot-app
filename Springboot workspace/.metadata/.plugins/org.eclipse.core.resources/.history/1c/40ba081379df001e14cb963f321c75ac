@@ -1,0 +1,15 @@
+package com.springboard.rest.webServices;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller
+@CrossOrigin(origins = "https://localhost:4200")
+public class HelloMessageController {
+	
+	@GetMapping(path = "/hello-message-bean")
+	public HelloMessageBean helloMessageBean() {
+		return new HelloMessageBean("Hello Message");
+	}
+}
