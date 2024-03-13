@@ -1,27 +1,32 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import HelloMessageService from '../../api/todo/HelloMessageService';
 
 const WelcomeComponent = () => {
-  const { name } = useParams();
   const [welcomeMessage, setWelcomeMessage] = useState('');
-  const navigate = useNavigate();
+  const { name } = useParams();
 
   useEffect(() => {
-    HelloMessageService.executeHelloMessageService().then((response) => {
-      setWelcomeMessage(response.data.message);
-    });
-  }, []); // Empty dependency array to run the effect only once on mount
+    // Fetch the welcome message using the username (name) parameter
+    HelloMessageService.executeHelloMessageService(name)
+      .then((response) => {
+        console.log(response);
+        setWelcomeMessage(response.data.message);
+      })
+      .catch((error) => handleError(error)); // Fixed: added parentheses around 'error'
+  }, [name]);
 
-  const handleGoToTodos = () => {
-    navigate('/todo');
+  // Fixed: added 'const' before 'handleError'
+  const handleError = (error) => {
+    console.log(error.response);
+    setWelcomeMessage(error.response.data.message);
   };
 
   return (
     <>
       <h1>Welcome!</h1>
       <div className='container'>
-        Welcome {name}. You can manage your Todo's <Link to="/todo">here</Link>.
+        Welcome {name}. You can manage your Todo's <Link to='/todo'>here</Link>.
       </div>
       <div className='container'>
         <h2>{welcomeMessage}</h2>

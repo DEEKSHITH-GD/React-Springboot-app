@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.springboard.rest.webServices.bean.HelloMessageBean;
 
 @RestController
-@CrossOrigin(origins = "https://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200")
 public class HelloMessageController {
 	
 	@GetMapping(path = "/hello-message-bean")
@@ -18,6 +18,7 @@ public class HelloMessageController {
 	
 	@GetMapping(path = "/hello-message/path-variable/{name}")
 	public HelloMessageBean helloMessagePathVariable(@PathVariable String name) {
+		//throw new RuntimeException("Something Went Wrong!");
 		return new HelloMessageBean(String.format("Hello!, %s", name));
 	}
 }
