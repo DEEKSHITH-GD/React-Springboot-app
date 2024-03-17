@@ -1,0 +1,11 @@
+package com.springboard.rest.webServices.controller;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.springboard.rest.webServices.bean.Todo;
+
+public class TodoHardCodedService {
+	private static List<Todo> todos = new ArrayList<>();
+	private static int idCounter = 0; 
+}

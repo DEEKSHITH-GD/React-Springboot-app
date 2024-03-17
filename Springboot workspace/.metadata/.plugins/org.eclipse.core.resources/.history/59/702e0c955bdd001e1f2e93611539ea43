@@ -1,5 +1,0 @@
-package com.springboard.rest.webServices;
-
-public class HelloMessageController {
-
-}

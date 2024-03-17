@@ -1,0 +1,45 @@
+package com.springboard.rest.webServices.controller;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.springboard.rest.webServices.bean.Todo;
+
+@Service
+public class TodoHardCodedService {
+	private static List<Todo> todos = new ArrayList<>();
+	private static int idCounter = 0;
+	
+	static {
+		todos.add(new Todo(++idCounter, "task1", "Learn to code", new Date(), false));
+		todos.add(new Todo(++idCounter, "task2", "Learn Java", new Date(), false));
+		todos.add(new Todo(++idCounter, "task3", "Learn about Microservices", new Date(), false));
+	}
+	
+	public List<Todo> findAll(){
+		return todos;
+	}
+	
+	public Todo deleteTodoById(long id) {
+		Todo todo = findById(id);
+		if(todo == null) return null;
+		if(todos.remove(id)) {
+			return todo;
+		}
+		return null;
+	}
+	
+	public Todo findById(long id) {
+		for(Todo todo:todos) {
+			if(todo.getId() == id) {
+				System.out.println("inside findById if ");
+				return todo;
+			}
+		}
+		System.out.println("inside findById outside if ");
+		return null;
+	}
+}

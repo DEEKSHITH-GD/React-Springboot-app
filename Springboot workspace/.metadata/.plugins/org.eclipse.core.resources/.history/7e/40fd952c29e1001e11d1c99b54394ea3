@@ -1,0 +1,26 @@
+package com.springboard.rest.webServices.bean;
+
+import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class Todo {
+	private long id;
+	private String  username;
+	private String  description;
+	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", timezone = "UTC")
+	private Date targetDate;
+	private boolean isDone;
+	
+	public Todo(long id, String username, String description, Date targetDate, boolean isDone) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.description = description;
+		this.targetDate = targetDate;
+		this.isDone = isDone;
+	}
+}
