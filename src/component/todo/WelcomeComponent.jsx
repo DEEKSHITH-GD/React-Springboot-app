@@ -19,7 +19,14 @@ const WelcomeComponent = () => {
   // Fixed: added 'const' before 'handleError'
   const handleError = (error) => {
     console.log(error.response);
-    setWelcomeMessage(error.response.data.message);
+    let errorMessage = '';
+    if(error.message){
+      errorMessage += error.message
+    }
+    if(error.response && error.message.data){
+      errorMessage += error.response.data.message
+    }
+    setWelcomeMessage({welcomeMessage: errorMessage});
   };
 
   return (

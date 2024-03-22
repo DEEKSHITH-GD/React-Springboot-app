@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import AuthenticationService from './AuthenticationService.js';
 
 const LoginComponent = () => {
-  const [username, setUsername] = useState('user');
+  const [username, setUsername] = useState('username');
   const [password, setPassword] = useState('password');
   const [hasLoginFailed, setHasLoginFailed] = useState(false);
   const [showLoginSuccess, setShowLoginSuccess] = useState(false);
@@ -31,6 +31,24 @@ const LoginComponent = () => {
       setHasLoginFailed(true);
       setShowLoginSuccess(false);
     }
+
+    // AuthenticationService.executeBasicAuthenticationService(username, password).then(() => {
+    //   AuthenticationService.registerSuccessfulLogin(username, password);
+    //   navigate(`/welcome/${username}`);
+    // }
+    // ).catch(() => {
+    //   setHasLoginFailed(true);
+    //   setShowLoginSuccess(false);
+    // })
+
+    // AuthenticationService.executeJwtAuthenticationService(username, password).then((response) => {
+    //   AuthenticationService.registerSuccessfulLoginForJwt(username, response.data.token);
+    //   navigate(`/welcome/${username}`);
+    // }
+    // ).catch(() => {
+    //   setHasLoginFailed(true);
+    //   setShowLoginSuccess(false);
+    // })
   };
 
   return (

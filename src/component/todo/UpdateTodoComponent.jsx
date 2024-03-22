@@ -16,11 +16,16 @@ const UpdateTodoComponent = () => {
 
     const onSubmit = (values) => {
         let username = AuthenticationService.GetLoggedInUser();
-        TodoDataService.deleteTodo(username, id, {
-            id: this.useState.id,
+        let newTodo = {
+            id: todo.id,
             description: values.description,
             targetDate: values.targetDate
-        }).then(() => navigate("/todo"))
+        }
+        if (id === -1) {
+            TodoDataService.createTodo(username, newTodo).then(() => navigate("/todo"))
+        } else {
+            TodoDataService.updateTodo(username, id, newTodo).then(() => navigate("/todo"))
+        }
     };
 
     const validate = (values) =>{
@@ -44,14 +49,19 @@ const UpdateTodoComponent = () => {
 
     const mountTodo = () => {
         const username = AuthenticationService.GetLoggedInUser();
-        TodoDataService.retrieveTodo(username, id).then((response) => {
-            console.log(response);
-            setTodo({
-                id: response.data.id,
-                description: response.data.description,
-                targetDate: moment(response.data.targetDate).format('YYYY-MM-DD')
+        if(id === -1){
+             return
+        }else{
+            TodoDataService.retrieveTodo(username, id).then((response) => {
+                console.log(response);
+                setTodo({
+                    id: response.data.id,
+                    description: response.data.description,
+                    targetDate: moment(response.data.targetDate).format('YYYY-MM-DD')
+                });
             });
-        });
+        }
+        
     };
 
     return (

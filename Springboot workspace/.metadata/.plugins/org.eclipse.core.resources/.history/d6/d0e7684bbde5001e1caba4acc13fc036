@@ -1,0 +1,68 @@
+package com.springboard.rest.webServices.jwt;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+@Configuration
+@EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
+public class JWTWebSecurityConfig {
+
+    private final JwtUnAuthorizedResponseAuthenticationEntryPoint jwtUnAuthorizedResponseAuthenticationEntryPoint;
+    private final UserDetailsService jwtInMemoryUserDetailsService;
+    private final JwtTokenAuthorizationOncePerRequestFilter jwtAuthenticationTokenFilter;
+    private final String authenticationPath;
+
+    @Autowired
+    public JWTWebSecurityConfig(
+            JwtUnAuthorizedResponseAuthenticationEntryPoint jwtUnAuthorizedResponseAuthenticationEntryPoint,
+            UserDetailsService jwtInMemoryUserDetailsService,
+            JwtTokenAuthorizationOncePerRequestFilter jwtAuthenticationTokenFilter,
+            @Value("${jwt.get.token.uri}") String authenticationPath) {
+        this.jwtUnAuthorizedResponseAuthenticationEntryPoint = jwtUnAuthorizedResponseAuthenticationEntryPoint;
+        this.jwtInMemoryUserDetailsService = jwtInMemoryUserDetailsService;
+        this.jwtAuthenticationTokenFilter = jwtAuthenticationTokenFilter;
+        this.authenticationPath = authenticationPath;
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoderBean() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http
+            .csrf().disable()
+            .exceptionHandling().authenticationEntryPoint(jwtUnAuthorizedResponseAuthenticationEntryPoint).and()
+            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+            .authorizeRequests()
+            .anyRequest().authenticated();
+
+        http
+            .addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
+
+        http
+            .headers()
+            .frameOptions().sameOrigin()  //H2 Console Needs this setting
+            .cacheControl(); //disable caching
+
+        return http.build();
+    }
+
+    @Bean
+    public JwtTokenAuthorizationOncePerRequestFilter jwtAuthenticationTokenFilter() {
+        return new JwtTokenAuthorizationOncePerRequestFilter();
+    }
+}

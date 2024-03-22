@@ -7,10 +7,18 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+
+@Entity
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Todo {
+	
+	@Id
+	@GeneratedValue
 	@JsonProperty("id")
-	private long id;
+	private Long id;
 	
 	@JsonProperty("username")
 	private String  username;
@@ -18,7 +26,7 @@ public class Todo {
 	@JsonProperty("description")
 	private String  description;
 	
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", timezone = "UTC")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "UTC")
 	private Date targetDate;
 	
 	@JsonProperty("isDone")
@@ -28,7 +36,7 @@ public class Todo {
 		
 	}
 	
-	public Todo(long id, String username, String description, Date targetDate, boolean isDone) {
+	public Todo(Long id, String username, String description, Date targetDate, boolean isDone) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -54,11 +62,11 @@ public class Todo {
 		return id == other.id;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

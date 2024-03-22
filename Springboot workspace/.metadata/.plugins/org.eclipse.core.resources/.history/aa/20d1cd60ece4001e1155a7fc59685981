@@ -1,0 +1,5 @@
+package com.springboard.rest.webServices.basic.auth;
+
+public class SpringSecurityBasicAuthConfiguration {
+
+}

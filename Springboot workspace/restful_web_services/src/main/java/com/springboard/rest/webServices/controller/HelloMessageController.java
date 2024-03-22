@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.springboard.rest.webServices.bean.AuthenticationBean;
 import com.springboard.rest.webServices.bean.HelloMessageBean;
 
 @RestController
@@ -21,4 +22,5 @@ public class HelloMessageController {
 		//throw new RuntimeException("Something Went Wrong!");
 		return new HelloMessageBean(String.format("Hello!, %s", name));
 	}
+	
 }

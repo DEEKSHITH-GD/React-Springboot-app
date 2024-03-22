@@ -34,6 +34,10 @@ const TodoComponent = () => {
     navigate(`/todo/${id}`);
   };
 
+  const addTodoClicked = () => {
+    navigate("/todo/-1")
+  }
+
   return (
     <div>
       <h1>Todo's list</h1>
@@ -69,6 +73,7 @@ const TodoComponent = () => {
             ))}
           </tbody>
         </table>
+        <div><button className='btn btn-success' onClick={() => addTodoClicked()}>Add</button></div>
       </div>
     </div>
   );

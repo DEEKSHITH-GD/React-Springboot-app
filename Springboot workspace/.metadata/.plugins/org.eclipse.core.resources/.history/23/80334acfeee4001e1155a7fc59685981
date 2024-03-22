@@ -1,0 +1,25 @@
+package com.springboard.rest.webServices.basic.auth;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.web.SecurityFilterChain;
+
+@Configuration
+@EnableWebSecurity
+public class SpringSecurityBasicAuthConfiguration  {
+	
+	@Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http
+        	.csrf().disable()
+            .authorizeRequests((authz) -> authz
+            	.antMatchers(HttpMethod.OPTIONS,"/**").permitAll()
+                .anyRequest().authenticated()
+            )
+            .httpBasic(); // Deprecated, but we'll use it for now
+        return http.build();
+    }	
+}

@@ -1,5 +1,0 @@
-package com.springboard.rest.webServices.bean;
-
-public class HelloMessageBean {
-
-}

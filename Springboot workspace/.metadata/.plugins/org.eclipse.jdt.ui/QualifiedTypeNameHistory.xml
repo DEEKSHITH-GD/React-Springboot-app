@@ -6,7 +6,6 @@
     <fullyQualifiedTypeName name="java.lang.String"/>
     <fullyQualifiedTypeName name="java.lang.RuntimeException"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RestController"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="java.util.Date"/>
     <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
     <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
@@ -20,4 +19,27 @@
     <fullyQualifiedTypeName name="org.springframework.http.HttpStatusCode"/>
     <fullyQualifiedTypeName name="org.springframework.http.HttpStatus"/>
     <fullyQualifiedTypeName name="org.springframework.web.servlet.support.ServletUriComponentsBuilder"/>
+    <fullyQualifiedTypeName name="org.apache.catalina.authenticator.SpnegoAuthenticator.AuthenticateAction"/>
+    <fullyQualifiedTypeName name="org.springframework.context.annotation.Configuration"/>
+    <fullyQualifiedTypeName name="org.springframework.security.config.annotation.web.configuration.EnableWebSecurity"/>
+    <fullyQualifiedTypeName name="org.springframework.http.HttpMethod"/>
+    <fullyQualifiedTypeName name="java.lang.Override"/>
+    <fullyQualifiedTypeName name="org.springframework.security.config.Customizer"/>
+    <fullyQualifiedTypeName name="org.slf4j.Logger"/>
+    <fullyQualifiedTypeName name="io.jsonwebtoken.Clock"/>
+    <fullyQualifiedTypeName name="java.util.function.Function"/>
+    <fullyQualifiedTypeName name="com.springboard.rest.webServices.jwt.resource.AuthenticationException"/>
+    <fullyQualifiedTypeName name="org.springframework.security.core.AuthenticationException"/>
+    <fullyQualifiedTypeName name="java.util.Collection"/>
+    <fullyQualifiedTypeName name="io.jsonwebtoken.lang.Objects"/>
+    <fullyQualifiedTypeName name="org.springframework.security.web.SecurityFilterChain"/>
+    <fullyQualifiedTypeName name="org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder"/>
+    <fullyQualifiedTypeName name="org.springframework.security.authentication.AuthenticationManager"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.Entity"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.Id"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.GeneratedValue"/>
+    <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.JpaRepository"/>
+    <fullyQualifiedTypeName name="org.springframework.stereotype.Repository"/>
+    <fullyQualifiedTypeName name="com.springboard.rest.webServices.controller.TodoJpaRepository"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
 </qualifiedTypeNameHistroy>

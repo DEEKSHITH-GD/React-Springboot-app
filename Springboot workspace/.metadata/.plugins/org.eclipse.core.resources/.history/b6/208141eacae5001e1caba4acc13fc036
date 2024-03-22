@@ -1,0 +1,7 @@
+create table todo(id long, username varchar(20), description varchar(60), targeet_date Date, is_done boolean)
+insert into todo(id, username, description, targeet_date, is_done)
+values(10001, 'user1', 'learn java', now(), false);
+insert into todo(id, username, description, targeet_date, is_done)
+values(10002, 'user2', 'learn jpa', now(), false);
+insert into todo(id, username, description, targeet_date, is_done)
+values(10003, 'user3', 'learn hibernate', now(), false);
